@@ -8,7 +8,7 @@ import cors from 'cors'
 const app = express();
 
 app.use((req, res, next) => {
-    const allowedOrigins = ["http://localhost:3000", "https://a5--stellular-malasada-11cc12.netlify.app"];
+    const allowedOrigins = ["http://localhost:3000", "https://beamish-kelpie-afb7cb.netlify.app/"];
     const origin = req.headers.origin;
 
     if (allowedOrigins.includes(origin)) {
