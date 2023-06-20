@@ -7,6 +7,15 @@ import AuthController from "./users/auth-controller.js";
 import cors from 'cors'
 const app = express();
 
+import mongoose from "mongoose";
+
+//const CONNECTION_STRING = "mongodb+srv://sachipatel9629:Jayambema22@cluster0.ylwoukd.mongodb.net/tuiter?retryWrites=true&w=majority";
+
+//mongoose.connect(MONGODB_CONNECTION_STRING);
+
+mongoose.connect("mongodb://127.0.0.1:27017/tuiter");
+
+
 app.use((req, res, next) => {
 
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -20,17 +29,22 @@ app.use((req, res, next) => {
 });
 
 app.use(
-    session({
-      secret: "any string",
-      resave: false,
-      saveUninitialized: true,
-    })
-   );
+  session({
+    secret: "any string",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      sameSite : "none",
+      secure : true
+    }
+  })
+ );
 
 app.use
 cors({
     credentials: true,
-    origin: "https://beamish-kelpie-afb7cb.netlify.app/",
+    //origin: "https://beamish-kelpie-afb7cb.netlify.app/",
+    origin: "http://localhost:3000",
   })
 
 app.use(express.json());
