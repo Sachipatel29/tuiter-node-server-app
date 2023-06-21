@@ -9,10 +9,10 @@ const app = express();
 import mongoose from "mongoose";
 
 
-//const CONNECTION_STRING = "mongodb+srv://sachipatel9629:Jayambema22@cluster0.ylwoukd.mongodb.net/tuiter?retryWrites=true&w=majority";
-//mongoose.connect(MONGODB_CONNECTION_STRING);
+const CONNECTION_STRING = "mongodb+srv://sachipatel9629:Jayambema22@cluster0.ylwoukd.mongodb.net/tuiter?retryWrites=true&w=majority";
+mongoose.connect(MONGODB_CONNECTION_STRING);
 
-mongoose.connect("mongodb://127.0.0.1:27017/tuiter");
+//mongoose.connect("mongodb://127.0.0.1:27017/tuiter");
 
 
 app.use((req, res, next) => {
@@ -44,8 +44,8 @@ app.set("trust proxy", 1);
 app.use
 cors({
     credentials: true,
-    //origin: "https://beamish-kelpie-afb7cb.netlify.app/",
-    origin: "http://localhost:3000",
+    origin: "https://beamish-kelpie-afb7cb.netlify.app/",
+    //origin: "http://localhost:3000",
   })
 
 app.use(express.json());
