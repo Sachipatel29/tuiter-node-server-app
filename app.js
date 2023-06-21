@@ -6,11 +6,10 @@ import session from "express-session";
 import AuthController from "./users/auth-controller.js";
 import cors from 'cors'
 const app = express();
-
 import mongoose from "mongoose";
 
-//const CONNECTION_STRING = "mongodb+srv://sachipatel9629:Jayambema22@cluster0.ylwoukd.mongodb.net/tuiter?retryWrites=true&w=majority";
 
+//const CONNECTION_STRING = "mongodb+srv://sachipatel9629:Jayambema22@cluster0.ylwoukd.mongodb.net/tuiter?retryWrites=true&w=majority";
 //mongoose.connect(MONGODB_CONNECTION_STRING);
 
 mongoose.connect("mongodb://127.0.0.1:27017/tuiter");
@@ -32,7 +31,8 @@ app.use(
   session({
     secret: "any string",
     resave: false,
-    saveUninitialized: true,
+    proxy:true,
+    saveUninitialized: false,
     cookie: {
       sameSite : "none",
       secure : true
@@ -40,6 +40,7 @@ app.use(
   })
  );
 
+app.set("trust proxy", 1);
 app.use
 cors({
     credentials: true,
@@ -48,6 +49,7 @@ cors({
   })
 
 app.use(express.json());
+
 const port = process.env.PORT || 4000;
 TuitsController(app);
 HelloController(app);
